@@ -5,7 +5,7 @@ import Hoge from '../components/Hoge'
 const App: React.FC = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={() => (
+      <Route path="/" component={() => (
         <div>
           <h1>Root</h1>
           <a href="/hoge">hoge</a>
