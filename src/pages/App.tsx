@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Hoge from '../components/Hoge';
+import Home from '../components/Home';
 import NotFound from '../components/NotFound';
 
 const App: React.FC = () => (
@@ -9,14 +9,8 @@ const App: React.FC = () => (
       <Route
         exact
         path="/"
-        component={() => (
-          <div>
-            <h1>Root</h1>
-            <Link to="/hoge">hoge</Link>
-          </div>
-        )}
+        component={Home}
       />
-      <Route path="/hoge" component={Hoge} />
       <Route component={NotFound} />
     </Switch>
   </Router>
