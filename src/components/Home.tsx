@@ -1,34 +1,27 @@
-import React, { useEffect } from 'react';
-import * as THREE from 'three';
+import React from 'react';
+import styled from 'styled-components';
 
-export const width = window.innerWidth;
-export const height = window.innerHeight;
+const WrapTitle = styled.div`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+`
 
-export const scene = new THREE.Scene();
-
-export const camera = new THREE.PerspectiveCamera(50, width / height, 1, 1000);
-camera.position.set(0, 0, 100);
-
-export const renderer = new THREE.WebGLRenderer();
-renderer.setClearColor(0x000000, 1);
-renderer.setSize(width, height);
-
-export const renderScene = () => {
-  requestAnimationFrame(renderScene)
-  window.addEventListener('resize', handleWindowEvent)
-}
-
-export const handleWindowEvent = () => {
-  renderer.setSize(window.innerWidth, window.innerHeight)
-}
+const Title = styled.div`
+  font-family: Sacramento;
+  font-size: 220px;
+`
 
 const Home: React.FC = () => {
-  useEffect(() => {
-    document.body.appendChild(renderer.domElement)
-    renderScene()
-    renderer.render(scene, camera)
-  })
-  return <div></div>;
+  return (
+    <WrapTitle>
+      <Title>
+        Recapture.
+      </Title>
+    </WrapTitle>
+  );
 };
 
 export default Home;
