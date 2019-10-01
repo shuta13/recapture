@@ -11,7 +11,7 @@ const App: React.FC = () => (
           <a href="/hoge">hoge</a>
         </div>
       )} />
-      <Route path="/hoge" component={() => <Hoge />} />
+      <Route path="/hoge" component={Hoge} />
       <Route component={() => <h1>404</h1>} />
     </Switch>
   </Router>
