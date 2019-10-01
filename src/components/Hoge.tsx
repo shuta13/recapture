@@ -4,7 +4,7 @@ import logo from '../assets/logo.svg';
 
 const AppWrap = styled.div`
   text-align: center;
-`
+`;
 
 const AppHeader = styled.header`
   background-color: #282c34;
@@ -15,14 +15,14 @@ const AppHeader = styled.header`
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-`
+`;
 const AppLogo = styled.img`
   height: 40vmin;
-`
+`;
 
 const AppLink = styled.a`
   color: #09d3ac;
-`
+`;
 
 const Hoge: React.FC = () => {
   return (
