@@ -1,14 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Hoge from '../components/Hoge'
 
 const App: React.FC = () => (
   <Router>
     <Switch>
-      <Route path="/" component={() => (
+      <Route exact path="/" component={() => (
         <div>
           <h1>Root</h1>
-          <a href="/hoge">hoge</a>
+          <Link to="/hoge">hoge</Link>
         </div>
       )} />
       <Route path="/hoge" component={Hoge} />
