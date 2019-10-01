@@ -1,25 +1,48 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React from 'react';
+import styled from 'styled-components';
+import logo from './logo.svg';
+// import './App.css';
+
+const AppWrap = styled.div`
+  text-align: center;
+`
+
+const AppHeader = styled.header`
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+`
+const AppLogo = styled.img`
+  height: 40vmin;
+`
+
+const AppLink = styled.a`
+  color: #09d3ac;
+`
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <AppWrap>
+      <AppHeader>
+        <AppLogo src={logo} alt="logo" />
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
+        <AppLink
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
-      </header>
-    </div>
+        </AppLink>
+      </AppHeader>
+    </AppWrap>
   );
 };
 

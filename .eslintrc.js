@@ -19,7 +19,7 @@ module.exports = {
     "plugin:prettier/recommended"
   ],
   rules: {
-    "no-extra-semi": "warn",
+    "no-extra-semi": "error",
     "no-undef": "warn",
     "no-console": "off",
     "space-before-blocks": ["warn", { "classes": "always", "functions": "always", "keywords": "always" }]
