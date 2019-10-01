@@ -13,10 +13,20 @@ export const renderer = new THREE.WebGLRenderer();
 renderer.setClearColor(0x000000, 1);
 renderer.setSize(width, height);
 
+export const renderScene = () => {
+  requestAnimationFrame(renderScene)
+  window.addEventListener('resize', handleWindowEvent)
+}
+
+export const handleWindowEvent = () => {
+  renderer.setSize(window.innerWidth, window.innerHeight)
+}
+
 const Home: React.FC = () => {
   useEffect(() => {
     document.body.appendChild(renderer.domElement)
-    renderer.render(scene, camera);
+    renderScene()
+    renderer.render(scene, camera)
   })
   return <div></div>;
 };
