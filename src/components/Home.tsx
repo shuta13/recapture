@@ -6,20 +6,18 @@ const WrapTitle = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center; 
-`
+  align-items: center;
+`;
 
 const Title = styled.div`
   font-family: Sacramento;
   font-size: 220px;
-`
+`;
 
 const Home: React.FC = () => {
   return (
     <WrapTitle>
-      <Title>
-        Recapture.
-      </Title>
+      <Title>Recapture.</Title>
     </WrapTitle>
   );
 };
