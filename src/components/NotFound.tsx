@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const AppHead = styled.div`
+const NotFoundHead = styled.div`
   background-color: #1d1d1d;
   font-family: 'Noto Sans';
   font-size: 24px;
@@ -12,7 +12,7 @@ const AppHead = styled.div`
   align-items: center;
 `;
 
-const AppContent = styled.div`
+const NotFoundContent = styled.div`
   color: #fff;
   transition: color 0.4s;
   &:hover {
@@ -22,9 +22,9 @@ const AppContent = styled.div`
 
 const NotFound: React.FC = () => {
   return (
-    <AppHead>
-      <AppContent>not found</AppContent>
-    </AppHead>
+    <NotFoundHead>
+      <NotFoundContent>not found</NotFoundContent>
+    </NotFoundHead>
   );
 };
 
