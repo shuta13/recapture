@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NotFound from '../../components/NotFound';
+import NotFound from '../../pages/NotFound';
 
 describe('なんか最初からあるやつ書き方キモいので修正', () => {
   test('renders without crashing', () => {
