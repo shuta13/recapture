@@ -44,9 +44,14 @@ const Menu = styled.div`
 `;
 const MenuButton = styled.span`
   cursor: pointer;
-  margin: 0 24px;
+  margin: 0 23px;
   height: 24px;
-  width: 50px;
+  /* looks good animation */
+  /* width: 54px; */
+  text-align: center;
+
+  /* setup animation */
+  overflow: hidden;
 `;
 const MenuUnderBar = styled.div`
   background-color: #1d1d1d;
@@ -54,10 +59,14 @@ const MenuUnderBar = styled.div`
   height: 2px;
   border-radius: 3px;
   margin-top: -8px;
+
+  /* hover animation */
   transform: translate(-102%, 0);
-  transition: transform .4s;
+  transition: transform 0s;
   ${MenuButton}:hover & {
-    transform: translate(0, 0);
+    transform: translate(102%, 0);
+    transition: transform .6s;
+    transition-timing-function: cubic-bezier(.63,-0.02,.41,.98);
   }
 `
 
@@ -65,7 +74,7 @@ const MenuUnderBar = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   font-family: Charmonman;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   color: #1d1d1d;
 `
@@ -85,17 +94,17 @@ const Title = styled.div`
 `;
 
 const Home: React.FC = () => {
-  const [hover, setHover] = useState(false);
-  const onMouseEnterHandler = (path: string) => {
-    console.log(path)
-    setHover(true);
-    console.log(hover)
-  }
-  const onMouseLeaveHandler = (path: string) => {
-    console.log(path)
-    setHover(false);
-    console.log(hover)
-  }
+  // const [hover, setHover] = useState(false);
+  // const onMouseEnterHandler = (path: string) => {
+  //   console.log(path)
+  //   setHover(true);
+  //   console.log(hover)
+  // }
+  // const onMouseLeaveHandler = (path: string) => {
+  //   console.log(path)
+  //   setHover(false);
+  //   console.log(hover)
+  // }
   return (
     <Router>
       <WrapGrid>
@@ -104,25 +113,32 @@ const Home: React.FC = () => {
             <WrapMenu>
               <Menu>
                 <MenuButton>
-                  <StyledLink to="/" onMouseEnter={ () => onMouseEnterHandler('/') } onMouseLeave={ () => onMouseLeaveHandler('/') }>
+                  {/* <StyledLink to="/" onMouseEnter={ () => onMouseEnterHandler('/') } onMouseLeave={ () => onMouseLeaveHandler('/') }> */}
+                  <StyledLink to="/">
                     Home
                   </StyledLink>
                   <MenuUnderBar></MenuUnderBar>
                 </MenuButton>
                 <MenuButton>
-                  <StyledLink to="/about" onMouseEnter={ () => onMouseEnterHandler('/about') } onMouseLeave={ () => onMouseLeaveHandler('/about') }>
+                  {/* <StyledLink to="/about" onMouseEnter={ () => onMouseEnterHandler('/about') } onMouseLeave={ () => onMouseLeaveHandler('/about') }> */}
+                  <StyledLink to="/about">
                     About
                   </StyledLink>
+                  <MenuUnderBar></MenuUnderBar>
                 </MenuButton>
                 <MenuButton>
-                  <StyledLink to="/works" onMouseEnter={ () => onMouseEnterHandler('/works') } onMouseLeave={ () => onMouseLeaveHandler('/works') }>
+                  {/* <StyledLink to="/works" onMouseEnter={ () => onMouseEnterHandler('/works') } onMouseLeave={ () => onMouseLeaveHandler('/works') }> */}
+                  <StyledLink to="/works">
                     Works
                   </StyledLink>
+                  <MenuUnderBar></MenuUnderBar>
                 </MenuButton>
                 <MenuButton>
-                  <StyledLink to="/media" onMouseEnter={ () => onMouseEnterHandler('/media') } onMouseLeave={ () => onMouseLeaveHandler('/media') }>
+                  {/* <StyledLink to="/media" onMouseEnter={ () => onMouseEnterHandler('/media') } onMouseLeave={ () => onMouseLeaveHandler('/media') }> */}
+                  <StyledLink to="/media">
                     Media
                   </StyledLink>
+                  <MenuUnderBar></MenuUnderBar>
                 </MenuButton>
               </Menu>
             </WrapMenu>
