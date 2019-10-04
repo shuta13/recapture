@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Grid from '../components/Grid';
 import Menu from '../components/Menu';
 
-// Recapture
+const Background = styled.div`
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+
+  background: ${ props => props.color==='#fff' ? '#1d1d1d' : '#fff' };
+`;
+
 const WrapTitle = styled.div`
   width: 100vw;
   height: 100vh;
@@ -13,20 +20,27 @@ const WrapTitle = styled.div`
   align-items: center;
 `;
 const Title = styled.div`
-  color: #1d1d1d;
   font-family: Sacramento;
-  font-size: 240px;
+  font-size: 220px;
+
+  color: ${ props => props.color };
 `;
 
 const Home: React.FC = () => {
+  const [ theme, setTheme ] = useState('#1d1d1d');
+  useEffect(() => {
+    setTimeout(() => {
+      setTheme('#fff');
+    }, 2000)
+  })
   return (
-    <div>
-      <Grid></Grid>
-        <Menu></Menu>
+    <Background color={ theme }>
+      <Grid color={ theme }></Grid>
+        <Menu color={ theme }></Menu>
         <WrapTitle>
-          <Title>Recapture.</Title>
+          <Title color={ theme }>Recapture.</Title>
         </WrapTitle>
-    </div>
+    </Background>
   );
 };
 

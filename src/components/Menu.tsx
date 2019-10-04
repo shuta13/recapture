@@ -29,12 +29,11 @@ const MenuButton = styled.span`
   overflow: hidden;
 `;
 const MenuUnderBar = styled.div`
-  background-color: #1d1d1d;
   width: 100%;
   height: 2px;
   border-radius: 3px;
   margin-top: -8px;
-
+  
   /* hover animation */
   transform: translate(-102%, 0);
   transition: transform 0s;
@@ -43,6 +42,8 @@ const MenuUnderBar = styled.div`
     transition: transform .6s;
     transition-timing-function: cubic-bezier(.63,-0.02,.41,.98);
   }
+
+  background-color: ${ props => props.color };
 `
 // Linkタグのstyle
 const StyledLink = styled(Link)`
@@ -50,37 +51,38 @@ const StyledLink = styled(Link)`
   font-family: Charmonman;
   font-size: 15px;
   font-weight: bold;
-  color: #1d1d1d;
+
+  color: ${ props => props.color };
 `
 
-const Menu: React.FC = () => {
+const Menu: React.FC<{ color: string }> = ({ color }) => {
   return (
     <Router>
       <WrapMenu>
         <MenuBar>
           <MenuButton>
-            <StyledLink to="/">
+            <StyledLink to="/" color={ color }>
               Home
             </StyledLink>
-            <MenuUnderBar></MenuUnderBar>
+            <MenuUnderBar color={ color }></MenuUnderBar>
           </MenuButton>
           <MenuButton>
-            <StyledLink to="/about">
+            <StyledLink to="/about" color={ color }>
               About
             </StyledLink>
-            <MenuUnderBar></MenuUnderBar>
+            <MenuUnderBar color={ color }></MenuUnderBar>
           </MenuButton>
           <MenuButton>
-            <StyledLink to="/works">
+            <StyledLink to="/works" color={ color }>
               Works
             </StyledLink>
-            <MenuUnderBar></MenuUnderBar>
+            <MenuUnderBar color={ color }></MenuUnderBar>
           </MenuButton>
           <MenuButton>
-            <StyledLink to="/media">
+            <StyledLink to="/media" color={ color }>
               Media
             </StyledLink>
-            <MenuUnderBar></MenuUnderBar>
+            <MenuUnderBar color={ color }></MenuUnderBar>
           </MenuButton>
         </MenuBar>
       </WrapMenu>
