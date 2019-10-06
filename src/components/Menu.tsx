@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const WrapMenu = styled.div`
@@ -28,23 +28,6 @@ const MenuButton = styled.span`
   /* setup animation */
   overflow: hidden;
 `;
-const MenuUnderBar = styled.div`
-  width: 100%;
-  height: 2px;
-  border-radius: 3px;
-  margin-top: -8px;
-  
-  /* hover animation */
-  transform: translate(-102%, 0);
-  transition: transform 0s;
-  ${MenuButton}:hover & {
-    transform: translate(102%, 0);
-    transition: transform .6s;
-    transition-timing-function: cubic-bezier(.63,-0.02,.41,.98);
-  }
-
-  background-color: ${ props => props.color };
-`
 // Linkタグのstyle
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -56,12 +39,64 @@ const StyledLink = styled(Link)`
 `
 
 const Menu: React.FC<{ color: string }> = ({ color }) => {
+  const [ isHover, setIshover ] = useState()
+  const onMouseEnterUnderBarStyle = keyframes`
+    0% {
+      transform: translateX(-102%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  `
+  const onMouseLeaveUnderBarStyle = keyframes`
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(102%);
+    }
+  `
+  const getMouseEvent = () => {
+    switch (isHover) {
+      case 'enter' :
+        return onMouseEnterUnderBarStyle
+      case 'leave' :
+        return onMouseLeaveUnderBarStyle
+    }
+  }
+  const MenuUnderBar = styled.div`
+    width: 100%;
+    height: 2px;
+    border-radius: 3px;
+    margin-top: -8px;
+
+    transform: translateX(${ isHover==='enter' ?  "0%" : "-102%" });
+
+    /* hover animation */
+    /* transform: translate(-102%, 0);
+    transition: transform 0s;
+    ${MenuButton}:hover & {
+      transform: translate(102%, 0);
+      transition: transform .6s;
+      transition-timing-function: cubic-bezier(.63,-0.02,.41,.98);
+    } */
+
+    animation: ${ getMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+
+    background-color: ${ props => props.color };
+  `
+  const onMouseEnterEvent = () => {
+    setIshover('enter')
+  }
+  const onMouseLeaveEvent = () => {
+    setIshover('leave')
+  }
   return (
     <Router>
       <WrapMenu>
         <MenuBar>
           <MenuButton>
-            <StyledLink to="/" color={ color }>
+            <StyledLink to="/" color={ color } onMouseEnter={ onMouseEnterEvent } onMouseLeave={ onMouseLeaveEvent }>
               Home
             </StyledLink>
             <MenuUnderBar color={ color }></MenuUnderBar>
