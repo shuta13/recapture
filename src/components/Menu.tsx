@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const WrapMenu = styled.div`
   width: 100vw;
@@ -26,7 +27,7 @@ const MenuButton = styled.span`
   overflow: hidden;
 `;
 // Linkタグのstyle
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
   text-decoration: none;
   font-family: Charmonman;
   font-size: 15px;
@@ -102,25 +103,25 @@ const Menu: React.FC<{ color: string }> = ({ color }) => {
     <WrapMenu>
       <MenuBar>
         <MenuButton>
-          <StyledLink href="/" color={ color } onMouseEnter={ () => setHovered(0) } onMouseLeave={ () => setHovered('home') }>
+          <StyledLink to="/" color={ color } onMouseEnter={ () => setHovered(0) } onMouseLeave={ () => setHovered('home') }>
             Home
           </StyledLink>
           <HomeUnderBar color={ color } hovered={hovered===0} ></HomeUnderBar>
         </MenuButton>
         <MenuButton>
-          <StyledLink href="/about" color={ color } onMouseEnter={ () => setHovered(1) } onMouseLeave={ () => setHovered('about') }>
+          <StyledLink to="/about" color={ color } onMouseEnter={ () => setHovered(1) } onMouseLeave={ () => setHovered('about') }>
             About
           </StyledLink>
           <AboutUnderBar color={ color } hovered={hovered===1}></AboutUnderBar>
         </MenuButton>
         <MenuButton>
-          <StyledLink href="/works" color={ color } onMouseEnter={ () => setHovered(2) } onMouseLeave={ () => setHovered('works') }>
+          <StyledLink to="/works" color={ color } onMouseEnter={ () => setHovered(2) } onMouseLeave={ () => setHovered('works') }>
             Works
           </StyledLink>
           <WorksUnderBar color={ color } hovered={hovered===2}></WorksUnderBar>
         </MenuButton>
         <MenuButton>
-          <StyledLink href="/media" color={ color } onMouseEnter={ () => setHovered(3) } onMouseLeave={ () => setHovered('media') }>
+          <StyledLink to="/media" color={ color } onMouseEnter={ () => setHovered(3) } onMouseLeave={ () => setHovered('media') }>
             Media
           </StyledLink>
           <MediaUnderBar color={ color } hovered={hovered===3}></MediaUnderBar>
