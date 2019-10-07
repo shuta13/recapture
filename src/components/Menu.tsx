@@ -40,18 +40,18 @@ const Menu: React.FC<{ color: string }> = ({ color }) => {
 
   // アニメーションの実装
   const onMouseEnterUnderBarStyle = keyframes`
-    0% {
+    from {
       transform: translateX(-102%);
     }
-    100% {
+    to {
       transform: translateX(0%);
     }
   `
   const onMouseLeaveUnderBarStyle = keyframes`
-    0% {
+    from {
       transform: translateX(0%);
     }
-    100% {
+    to {
       transform: translateX(102%);
     }
   `
