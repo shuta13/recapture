@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 const WrapMenu = styled.div`
   width: 100vw;
@@ -21,15 +20,13 @@ const MenuButton = styled.span`
   cursor: pointer;
   margin: 0 23px;
   height: 24px;
-  /* looks good animation */
-  /* width: 54px; */
   text-align: center;
 
   /* setup animation */
   overflow: hidden;
 `;
 // Linkタグのstyle
-const StyledLink = styled(Link)`
+const StyledLink = styled.a`
   text-decoration: none;
   font-family: Charmonman;
   font-size: 15px;
@@ -41,6 +38,7 @@ const StyledLink = styled(Link)`
 const Menu: React.FC<{ color: string }> = ({ color }) => {
   const [ hovered, setHovered ] = useState<number | string | null>(null)
 
+  // アニメーションの実装
   const onMouseEnterUnderBarStyle = keyframes`
     0% {
       transform: translateX(-102%);
@@ -58,6 +56,7 @@ const Menu: React.FC<{ color: string }> = ({ color }) => {
     }
   `
 
+  // ホバーイベント取得するクソコード
   const getHomeMouseEvent = () => {
     if (hovered === 0) return onMouseEnterUnderBarStyle
     else if (hovered === 'home') return onMouseLeaveUnderBarStyle
@@ -85,6 +84,7 @@ const Menu: React.FC<{ color: string }> = ({ color }) => {
     background-color: ${ props => props.color };
   `
 
+  // ボタン別のアンダーバーのスタイル(クソコード)
   const HomeUnderBar = styled(CommonUnderBarStyle)`
     animation: ${ getHomeMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
   `
@@ -99,36 +99,34 @@ const Menu: React.FC<{ color: string }> = ({ color }) => {
   `
 
   return (
-    <Router>
-      <WrapMenu>
-        <MenuBar>
-          <MenuButton>
-            <StyledLink to="/" color={ color } onMouseEnter={ () => setHovered(0) } onMouseLeave={ () => setHovered('home') }>
-              Home
-            </StyledLink>
-            <HomeUnderBar color={ color } hovered={hovered===0} ></HomeUnderBar>
-          </MenuButton>
-          <MenuButton>
-            <StyledLink to="/about" color={ color } onMouseEnter={ () => setHovered(1) } onMouseLeave={ () => setHovered('about') }>
-              About
-            </StyledLink>
-            <AboutUnderBar color={ color } hovered={hovered===1}></AboutUnderBar>
-          </MenuButton>
-          <MenuButton>
-            <StyledLink to="/works" color={ color } onMouseEnter={ () => setHovered(2) } onMouseLeave={ () => setHovered('works') }>
-              Works
-            </StyledLink>
-            <WorksUnderBar color={ color } hovered={hovered===2}></WorksUnderBar>
-          </MenuButton>
-          <MenuButton>
-            <StyledLink to="/media" color={ color } onMouseEnter={ () => setHovered(3) } onMouseLeave={ () => setHovered('media') }>
-              Media
-            </StyledLink>
-            <MediaUnderBar color={ color } hovered={hovered===3}></MediaUnderBar>
-          </MenuButton>
-        </MenuBar>
-      </WrapMenu>
-    </Router>
+    <WrapMenu>
+      <MenuBar>
+        <MenuButton>
+          <StyledLink href="/" color={ color } onMouseEnter={ () => setHovered(0) } onMouseLeave={ () => setHovered('home') }>
+            Home
+          </StyledLink>
+          <HomeUnderBar color={ color } hovered={hovered===0} ></HomeUnderBar>
+        </MenuButton>
+        <MenuButton>
+          <StyledLink href="/about" color={ color } onMouseEnter={ () => setHovered(1) } onMouseLeave={ () => setHovered('about') }>
+            About
+          </StyledLink>
+          <AboutUnderBar color={ color } hovered={hovered===1}></AboutUnderBar>
+        </MenuButton>
+        <MenuButton>
+          <StyledLink href="/works" color={ color } onMouseEnter={ () => setHovered(2) } onMouseLeave={ () => setHovered('works') }>
+            Works
+          </StyledLink>
+          <WorksUnderBar color={ color } hovered={hovered===2}></WorksUnderBar>
+        </MenuButton>
+        <MenuButton>
+          <StyledLink href="/media" color={ color } onMouseEnter={ () => setHovered(3) } onMouseLeave={ () => setHovered('media') }>
+            Media
+          </StyledLink>
+          <MediaUnderBar color={ color } hovered={hovered===3}></MediaUnderBar>
+        </MenuButton>
+      </MenuBar>
+    </WrapMenu>
   );
 }
 

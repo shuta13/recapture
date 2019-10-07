@@ -1,7 +1,9 @@
 import React from 'react';
 
 const About: React.FC = () => {
-  return <div></div>;
+  return (
+    <div>クソコード</div>
+  );
 };
 
 export default About;
