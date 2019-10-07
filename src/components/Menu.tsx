@@ -39,7 +39,8 @@ const StyledLink = styled(Link)`
 `
 
 const Menu: React.FC<{ color: string }> = ({ color }) => {
-  const [ isHover, setIshover ] = useState()
+  const [ hovered, setHovered ] = useState<number | string | null>(null)
+
   const onMouseEnterUnderBarStyle = keyframes`
     0% {
       transform: translateX(-102%);
@@ -56,68 +57,74 @@ const Menu: React.FC<{ color: string }> = ({ color }) => {
       transform: translateX(102%);
     }
   `
-  const getMouseEvent = () => {
-    switch (isHover) {
-      case 'enter' :
-        return onMouseEnterUnderBarStyle
-      case 'leave' :
-        return onMouseLeaveUnderBarStyle
-    }
+
+  const getHomeMouseEvent = () => {
+    if (hovered === 0) return onMouseEnterUnderBarStyle
+    else if (hovered === 'home') return onMouseLeaveUnderBarStyle
   }
-  const MenuUnderBar = styled.div`
+  const getAboutMouseEvent = () => {
+    if (hovered === 1) return onMouseEnterUnderBarStyle
+    else if (hovered === 'about') return onMouseLeaveUnderBarStyle
+  }
+  const getWorksMouseEvent = () => {
+    if (hovered === 2) return onMouseEnterUnderBarStyle
+    else if (hovered === 'works') return onMouseLeaveUnderBarStyle
+  }
+  const getMediaMouseEvent = () => {
+    if (hovered === 3) return onMouseEnterUnderBarStyle
+    else if (hovered === 'media') return onMouseLeaveUnderBarStyle
+  }
+
+  const CommonUnderBarStyle = styled.div`
     width: 100%;
     height: 2px;
     border-radius: 3px;
     margin-top: -8px;
 
-    transform: translateX(${ isHover==='enter' ?  "0%" : "-102%" });
-
-    /* hover animation */
-    /* transform: translate(-102%, 0);
-    transition: transform 0s;
-    ${MenuButton}:hover & {
-      transform: translate(102%, 0);
-      transition: transform .6s;
-      transition-timing-function: cubic-bezier(.63,-0.02,.41,.98);
-    } */
-
-    animation: ${ getMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
-
+    transform: translateX(${({hovered}: {hovered: boolean}) => hovered  ?  "0%" : "-102%" });
     background-color: ${ props => props.color };
   `
-  const onMouseEnterEvent = () => {
-    setIshover('enter')
-  }
-  const onMouseLeaveEvent = () => {
-    setIshover('leave')
-  }
+
+  const HomeUnderBar = styled(CommonUnderBarStyle)`
+    animation: ${ getHomeMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+  `
+  const AboutUnderBar = styled(CommonUnderBarStyle)`
+    animation: ${ getAboutMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+  `
+  const WorksUnderBar = styled(CommonUnderBarStyle)`
+    animation: ${ getWorksMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+  `
+  const MediaUnderBar = styled(CommonUnderBarStyle)`
+    animation: ${ getMediaMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+  `
+
   return (
     <Router>
       <WrapMenu>
         <MenuBar>
           <MenuButton>
-            <StyledLink to="/" color={ color } onMouseEnter={ onMouseEnterEvent } onMouseLeave={ onMouseLeaveEvent }>
+            <StyledLink to="/" color={ color } onMouseEnter={ () => setHovered(0) } onMouseLeave={ () => setHovered('home') }>
               Home
             </StyledLink>
-            <MenuUnderBar color={ color }></MenuUnderBar>
+            <HomeUnderBar color={ color } hovered={hovered===0} ></HomeUnderBar>
           </MenuButton>
           <MenuButton>
-            <StyledLink to="/about" color={ color }>
+            <StyledLink to="/about" color={ color } onMouseEnter={ () => setHovered(1) } onMouseLeave={ () => setHovered('about') }>
               About
             </StyledLink>
-            <MenuUnderBar color={ color }></MenuUnderBar>
+            <AboutUnderBar color={ color } hovered={hovered===1}></AboutUnderBar>
           </MenuButton>
           <MenuButton>
-            <StyledLink to="/works" color={ color }>
+            <StyledLink to="/works" color={ color } onMouseEnter={ () => setHovered(2) } onMouseLeave={ () => setHovered('works') }>
               Works
             </StyledLink>
-            <MenuUnderBar color={ color }></MenuUnderBar>
+            <WorksUnderBar color={ color } hovered={hovered===2}></WorksUnderBar>
           </MenuButton>
           <MenuButton>
-            <StyledLink to="/media" color={ color }>
+            <StyledLink to="/media" color={ color } onMouseEnter={ () => setHovered(3) } onMouseLeave={ () => setHovered('media') }>
               Media
             </StyledLink>
-            <MenuUnderBar color={ color }></MenuUnderBar>
+            <MediaUnderBar color={ color } hovered={hovered===3}></MediaUnderBar>
           </MenuButton>
         </MenuBar>
       </WrapMenu>
