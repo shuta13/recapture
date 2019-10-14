@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Link } from 'react-router-dom';
+import {BrowserRouter as Router, Link } from 'react-router-dom';
 
 const WrapMenu = styled.div`
+  z-index: 999999;
   width: 100vw;
   height: 240px;
   left: 0;
@@ -87,16 +88,16 @@ const Menu: React.FC<{ color: string }> = ({ color }) => {
 
   // ボタン別のアンダーバーのスタイル(クソコード)
   const HomeUnderBar = styled(CommonUnderBarStyle)`
-    animation: ${ getHomeMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+    animation: ${ getHomeMouseEvent } .42s cubic-bezier(.63,-0.02,.41,.98);
   `
   const AboutUnderBar = styled(CommonUnderBarStyle)`
-    animation: ${ getAboutMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+    animation: ${ getAboutMouseEvent } .42s cubic-bezier(.63,-0.02,.41,.98);
   `
   const WorksUnderBar = styled(CommonUnderBarStyle)`
-    animation: ${ getWorksMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+    animation: ${ getWorksMouseEvent } .42s cubic-bezier(.63,-0.02,.41,.98);
   `
   const MediaUnderBar = styled(CommonUnderBarStyle)`
-    animation: ${ getMediaMouseEvent } .6s cubic-bezier(.63,-0.02,.41,.98);
+    animation: ${ getMediaMouseEvent } .42s cubic-bezier(.63,-0.02,.41,.98);
   `
 
   return (
